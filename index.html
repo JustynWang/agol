@@ -78,6 +78,32 @@
 
     //adding the point to the graphiclayer
     graphicsLayer.add(pointGraphic);
+
+    // Define the polyline geometry
+const polyline = {
+  type: "polyline",
+  paths: [
+    [-97.750689, 30.263098], // Starting point: Stevie Ray Vaughan Statue
+    [-96.796988, 32.776665] // Ending point: Dallas
+  ]
+};
+
+// Define the line symbol
+const simpleLineSymbol = {
+  type: "simple-line",
+  color: [255, 0, 0], // Red
+  width: 2
+};
+
+// Create the polyline graphic
+const polylineGraphic = new Graphic({
+  geometry: polyline,
+  symbol: simpleLineSymbol
+});
+
+// Add the polyline to the graphics layer
+graphicsLayer.add(polylineGraphic);
+
     });
   </script>
 
