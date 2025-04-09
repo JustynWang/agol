@@ -104,6 +104,39 @@ const polylineGraphic = new Graphic({
 // Add the polyline to the graphics layer
 graphicsLayer.add(polylineGraphic);
 
+// Define the circle geometry
+const circle = {
+  type: "polygon", // Polygon geometry
+  rings: [
+    // Approximate circle around Austin
+    [-97.7431, 30.2672], // Center point
+    [-97.7431, 30.2872], // North
+    [-97.7231, 30.2672], // West
+    [-97.7431, 30.2472], // South
+    [-97.7631, 30.2672], // East
+    [-97.7431, 30.2872]  // Close the circle
+  ]
+};
+
+// Define the fill symbol for the circle
+const circleFillSymbol = {
+  type: "simple-fill", // Fill symbol
+  color: [0, 255, 0, 0.25], // Green with transparency
+  outline: {
+    color: [0, 255, 0], // Green outline
+    width: 2
+  }
+};
+
+// Create the circle graphic
+const circleGraphic = new Graphic({
+  geometry: circle,
+  symbol: circleFillSymbol
+});
+
+// Add the circle to the graphics layer
+graphicsLayer.add(circleGraphic);
+
     });
   </script>
 
