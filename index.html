@@ -95,7 +95,21 @@ popupTemplate: popupEduusa
     });
       map.add(usaeduLayer);
 
+      // Define a pop-up for the airports layer
+      const popupAirports = {
+        title: "Airport: {NAME}",
+        content: "<b>City:</b> {CITY}<br><b>State:</b> {STATE}<br><b>Type:</b> {TYPE}"
+      };
 
+      // Add the airports feature layer
+      const airportsLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_JW_2025/FeatureServer",
+        outFields: ["NAME", "CITY", "STATE", "TYPE"], // Fields to include in the pop-up
+        popupTemplate: popupAirports
+      });
+
+      // Add the airports layer to the map
+      map.add(airportsLayer);
 
 
     //adding the point to the graphiclayer
