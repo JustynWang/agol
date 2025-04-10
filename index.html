@@ -95,6 +95,17 @@ popupTemplate: popupEduusa
     });
       map.add(usaeduLayer);
 
+      //setting up the icon 
+      const airportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "https://sounny.github.io/agol/outline_local_airport_black_24dp.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
       // Define a pop-up for the airports layer
       const popupAirports = {
         title: "Airport: {NAME}",
@@ -105,7 +116,8 @@ popupTemplate: popupEduusa
       const airportsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_JW_2025/FeatureServer",
         outFields: ["NAME", "CITY", "STATE", "TYPE"], // Fields to include in the pop-up
-        popupTemplate: popupAirports
+        popupTemplate: popupAirports,
+        renderer: airportRenderer
       });
 
       // Add the airports layer to the map
