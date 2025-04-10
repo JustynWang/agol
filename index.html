@@ -145,6 +145,34 @@ popupTemplate: popupEduusa
       // Add the airports layer to the map
       map.add(airportsLayer);
 
+      // Add heliports
+      const popupHeliports = {
+  title: "Heliport: {NAME}",
+  content: "<b>City:</b> {CITY}<br><b>State:</b> {STATE}<br><b>Type:</b> {TYPE}"
+};
+
+// Define a renderer for heliports
+const heliportRenderer = {
+  type: "simple",
+  symbol: {
+    type: "picture-marker",
+    url: "https://github.com/JustynWang/agol/blob/main/helicopter", // Replace with a heliport icon URL
+    width: "18px",
+    height: "18px"
+  }
+};
+
+// Add the heliports feature layer
+const heliportsLayer = new FeatureLayer({
+  url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_JW_2025/FeatureServer",
+  outFields: ["NAME", "CITY", "STATE", "TYPE"], // Fields to include in the pop-up
+  popupTemplate: popupHeliports,
+  renderer: heliportRenderer,
+  definitionExpression: "Fac_Type = 'HELIPORT'" // SQL filter for heliports
+});
+
+// Add the heliports layer to the map
+map.add(heliportsLayer);
 
     //adding the point to the graphiclayer
     graphicsLayer.add(pointGraphic);
