@@ -112,12 +112,34 @@ popupTemplate: popupEduusa
         content: "<b>City:</b> {CITY}<br><b>State:</b> {STATE}<br><b>Type:</b> {TYPE}"
       };
 
+      //const to make the airport labels
+      const airportLabels = {
+        symbol: {
+          type: "text",
+          color: "#FFFFFF",
+          haloColor: "#5E8D74",
+          haloSize: "2px",
+          font: {
+            size: "12px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.Fac_Name"
+        }
+      };
+
       // Add the airports feature layer
       const airportsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_JW_2025/FeatureServer",
         outFields: ["NAME", "CITY", "STATE", "TYPE"], // Fields to include in the pop-up
         popupTemplate: popupAirports,
-        renderer: airportRenderer
+        renderer: airportRenderer,
+        definitionExpression: "Fac_Type = 'AIRPORT'", //adding sql to filter for airports
+        labelingInfo: [airportLabels] //adding the labels
       });
 
       // Add the airports layer to the map
